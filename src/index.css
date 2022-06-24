@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .categories-a {
+        @apply  text-[white] text-[22px] font-[700] h-[52px] leading-[25.3px] pl-[18.93px] mb-0 box-border flex items-center justify-between pr-[15px] transition-all duration-200 hover:bg-[#B59628] hover:pl-[18px] hover:text-[white]
+    }
+    .categories-pitem {
+        @apply mb-0
+    }
+    .item-menuadmin {
+        @apply  text-[white] text-[22px] font-[700] h-[55px] leading-[25.3px] pl-[10px] box-border flex items-center justify-between pr-[15px] transition-all duration-200 hover:bg-[#FFD333] hover:pl-[18px]
+    }
+    .pmenu-admin {
+        @apply text-[18px] font-bold leading-[20.7px] text-[white] ml-[13.62px] mb-[0px]
+    }
+    .lisubmenu-admin {
+        @apply h-[55px] w-[223px] text-[18px] font-bold leading-[20.7px] text-[white] mb-[0px] flex items-center transition-all duration-200 hover:bg-[#FFD333] hover:pl-[4px]
+    }
+    .psubmenu-admin {
+        @apply mb-[0px] ml-[48px] text-[white]
+    },
+    .ulsubmenu-admin {
+        @apply hidden
+    }
+}

@@ -1,0 +1,6 @@
+.ant-menu-item-selected { 
+    background-color: yellow;
+}
+.ant-menu-submenu-selected {
+    color: white;
+}

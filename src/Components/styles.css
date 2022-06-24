@@ -1,0 +1,17 @@
+.ant-menu-root.ant-menu-inline {
+    color: #FFFFFF;
+    width: 224.92px;
+    border: none;
+    font-size: 18px;
+    background-color: #3D464D;
+    margin-top: 0px;
+    font-weight: 700;
+}
+.ant-menu-inline.ant-menu-root .ant-menu-item {
+    background-color: #3D464D;
+    border: none;
+    margin: 0px;
+    margin-bottom: 0px;
+    color: white;
+    margin-bottom: 0px;
+}
