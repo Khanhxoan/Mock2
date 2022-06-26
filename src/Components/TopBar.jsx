@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { HiOutlineMenuAlt1 } from 'react-icons/hi'
 import { BiSearch } from 'react-icons/bi'
 import {MdOutlineShoppingCart } from 'react-icons/md'
@@ -7,9 +7,7 @@ import Login from './auth/Login'
 import { Dropdown, Menu, Modal } from 'antd'
 import { AiOutlineLogin, AiOutlineUserAdd } from 'react-icons/ai'
 
-const TopBar = () => {
-    const onSearch = (value) => console.log(value);
-    const [showModal, setShowModal] = useState(false)
+const TopBar = ({modal, setModal}) => {    
 
     const menu = (
         <Menu
@@ -21,7 +19,8 @@ const TopBar = () => {
                 <div className='flex items-center text-[20px]'>
                     <AiOutlineLogin />
                     <a target="_blank" rel="noopener noreferrer" href="#" className='text-[20px] ml-[10px] text-[black]' onClick={(e) => {
-                        e.preventDefault()
+                      e.preventDefault();
+                      setModal(!modal)
                     }}>
                     Login
                     </a>
@@ -68,7 +67,6 @@ const TopBar = () => {
             <Dropdown overlay={menu} placement="bottom" arrow>
                 <FiUser className='text-[40px] ml-[32.14px]'/>
             </Dropdown>
-            {showModal && <Login/>}
         </div>
     </div>
   )

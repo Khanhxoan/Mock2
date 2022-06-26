@@ -6,6 +6,7 @@ import ProductCard from '../Components/ProductCard'
 import ProfileBanner from '../Components/ProfileBanner'
 
 const Home = () => {
+
   return (
     <div className='mx-[144px] mt-[11px] '>
         <div className='flex'>

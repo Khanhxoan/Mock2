@@ -1,6 +1,6 @@
 import { message } from 'antd';
 import axios from '../axios'
-import { getCategoriesStart, getCategoriesSuccess, getProductsStart, getProductsSuccess } from './reducer';
+import { getCategoriesFailed, getCategoriesStart, getCategoriesSuccess, getProductsFailed, getProductsStart, getProductsSuccess, getSingleProductSuccess, getSingleProductFailed } from './reducer';
 
 // Get all categories
 export const getCategories = async (dispatch) => {
@@ -8,8 +8,8 @@ export const getCategories = async (dispatch) => {
     try {
         const res = await axios.get("/v1/products/get-all-categories")
         dispatch(getCategoriesSuccess(res.data));
-    }
-    catch (err) {
+    } catch (err) {
+        dispatch(getCategoriesFailed())
         message.error({
             title: "Get Categories Failed",
             content: err.response.data.message
@@ -17,17 +17,40 @@ export const getCategories = async (dispatch) => {
     }
 }
 
-// Get product by category
+// // Get product by category
+// export const getProducts= async (dispatch, category) => {
+//     dispatch(getProductsStart());
+//     try {
+//         const res = await axios.get(`/v1/products?category=${category}`)
+//         dispatch(getProductsSuccess(res.data));
+//     }
+//     catch (err) {
+//         message.error({
+//             title: "Get all products failed",
+//             content: err.response.data.message
+//         })
+//     }
+// }
+
+//get product by category
 export const getProducts= async (dispatch, category) => {
     dispatch(getProductsStart());
     try {
         const res = await axios.get(`/v1/products?category=${category}`)
         dispatch(getProductsSuccess(res.data));
+        console.log(res.data);
     }
     catch (err) {
-        message.error({
-            title: "Get Categories Failed",
-            content: err.response.data.message
-        })
+        dispatch(getProductsFailed());
+    }
+}
+
+export const getSingleProduct = async (dispatch, id) => {
+    try{
+        const res = await axios.get(`/v1/products/${id}`)
+        dispatch(getSingleProductSuccess(res.data))
+    }
+    catch (error){
+        dispatch(getSingleProductFailed())
     }
 }

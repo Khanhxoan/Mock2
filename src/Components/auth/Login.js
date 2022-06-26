@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import "antd/dist/antd.css";
 import { CgClose } from "react-icons/cg";
 import { useDispatch } from "react-redux";
+import imgApp from "../imgs/shopApp.png"
 // import { login } from "../redux/auth/action";
 // import { useNavigate } from "react-router-dom";
 
-function Login() {
+function Login({modal, setModal}) {
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -31,7 +32,7 @@ function Login() {
 
   return (
     <div className="relative w-[832px] h-[395px] rounded-[20px] shadow-login">
-      <div className="absolute w-[416px] h-[395px] bg-white rounded-l-lg">
+      <div className="absolute w-[416px] h-[395px] bg-[white] rounded-l-lg ">
         <form
         //   onSubmit={handleLogin}
           className="absolute w-[319.17px] h-[247px] left-[47px] top-[51px]"
@@ -85,10 +86,10 @@ function Login() {
         </form>
       </div>
       <div className="absolute w-[416px] h-[395px] left-[416px] top-[0px]">
-        <img className="rounded-r-lg" src={"https://raw.githubusercontent.com/quoccuong205/mock2/master/src/imgs/shopApp.png"} alt="Sample image" />
+        <img className="rounded-r-lg" src={imgApp} alt="Sample image" />
       </div>
       <button>
-        <CgClose className="box-border text-[24px] absolute w-[31px] h-[31px] left-[791px] top-[10px] bg-[#ffffff] rounded-[15px] shadow-login border-solid border-[#e4e4e4]" />
+        <CgClose onClick={() => {setModal(!modal)}} className="box-border text-[24px] absolute w-[31px] h-[31px] left-[791px] top-[10px] bg-[#ffffff] rounded-[15px] shadow-login border-solid border-[#e4e4e4]"  />
       </button>
     </div>
   );

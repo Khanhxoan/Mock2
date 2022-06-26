@@ -1,6 +1,6 @@
-import {BsCartPlus} from "react-icons/bs"
 import Product from "./imgs/Product Photo.png"
 import star from "./imgs/star-fill.png"
+import {BsCartPlus} from "react-icons/bs"
 
 const ProductCard = () => {
   return (

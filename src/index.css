@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @layer components {
+    /* KhanhVN */
     .categories-a {
         @apply  text-[white] text-[22px] font-[700] h-[52px] leading-[25.3px] pl-[18.93px] mb-0 box-border flex items-center justify-between pr-[15px] transition-all duration-200 hover:bg-[#B59628] hover:pl-[18px] hover:text-[white]
     }
@@ -24,4 +25,28 @@
     .ulsubmenu-admin {
         @apply hidden
     }
+
+    /* HoangNX */
+    .title-left{
+        @apply w-[73px] h-[21px] font-sans font-semibold text-[18px] mb-[9px]
+    }
+    .title-right{
+        @apply w-[66px] h-[21px] font-sans font-semibold text-[18px] text-[#727070] mb-[9px] ml-[168px]
+    }
+    .button-product{
+        @apply w-[123px] h-[34px]  font-sans text-[18px] font-semibold rounded-[5px]
+    }
+    .title-cart{
+        @apply h-[19px] font-roboto font-bold text-[16px]
+    }
+    .title-navtab{
+        @apply h-[19px] font-roboto font-bold text-[16px] text-[#595959]
+    }
+    .star{
+        @apply w-[16px] h-[15px] ml-[4px]
+    }
+    .star2{
+        @apply w-[20px] h-[19.14px] ml-[8px]
+    }
+
 }
