@@ -10,6 +10,9 @@ import Productpage from './PageUser/HomePageCategory';
 import { Route, BrowserRouter, Routes } from 'react-router-dom' 
 import Login from './Components/auth/Login';
 import ProductDetail from './PageUser/ProductDetail';
+import { useEffect } from 'react';
+import { getCategories } from './redux/product/action';
+import { useDispatch } from "react-redux"
 
 function App() {
   return (

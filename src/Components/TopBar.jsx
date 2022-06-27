@@ -7,7 +7,7 @@ import Login from './auth/Login'
 import { Dropdown, Menu, Modal } from 'antd'
 import { AiOutlineLogin, AiOutlineUserAdd } from 'react-icons/ai'
 
-const TopBar = ({modal, setModal}) => {    
+const TopBar = ({modalLogin, setModalLogin, modalRegister ,setModalRegister}) => {    
 
     const menu = (
         <Menu
@@ -20,7 +20,7 @@ const TopBar = ({modal, setModal}) => {
                     <AiOutlineLogin />
                     <a target="_blank" rel="noopener noreferrer" href="#" className='text-[20px] ml-[10px] text-[black]' onClick={(e) => {
                       e.preventDefault();
-                      setModal(!modal)
+                      setModalLogin(!modalLogin)
                     }}>
                     Login
                     </a>
@@ -33,8 +33,9 @@ const TopBar = ({modal, setModal}) => {
                 <div className='flex items-center text-[20px]'>
                     <AiOutlineUserAdd />
                     <a target="_blank" rel="noopener noreferrer" href="#" className='text-[20px] ml-[10px] text-[black]' onClick={(e) => {
-                        e.preventDefault()
-                    }} >
+                        e.preventDefault();
+                        setModalRegister(!modalRegister)
+                    }}>
                     Register
                     </a>
                 </div>
@@ -52,7 +53,7 @@ const TopBar = ({modal, setModal}) => {
             <a href='#' className='text-[#5B5B5B] text-[16px] ml-[14.2px]'>Contacts</a>
             <a href='#' className='text-[#5B5B5B] text-[16px] ml-[14.2px]'>Store</a>
             <a href='#' className='text-[#5B5B5B] text-[16px] ml-[14.2px]'>Track Orders</a>
-        </div>  
+        </div> 
         <div className='flex items-center h-[124px]'>
             <p className='font-bold font-redrose text-[36px] ml-[163px] mb-0'>SHOP APP</p>
             <div className='w-[748px] flex bg-[#C4C4C4] ml-[29.34px] h-[50.35px] items-center rounded-[5px] justify-between'>

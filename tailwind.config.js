@@ -19,6 +19,9 @@ module.exports = {
       "menutopbar": "#F0E9E9",
       "mainbar": "#FFD333"
     },
+    screen: {
+      "laptop": "1460px",
+    }
   },
   plugins: [],
 }

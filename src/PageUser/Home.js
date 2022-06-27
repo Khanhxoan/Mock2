@@ -8,10 +8,10 @@ import ProfileBanner from '../Components/ProfileBanner'
 const Home = () => {
 
   return (
-    <div className='mx-[144px] mt-[11px] '>
+    <div className='mx-[144px] mt-[11px]'>
         <div className='flex'>
             <Categories />
-            <div className='w-[862px] ml-[11px] grid grid-cols-3'>
+            <div className='w-[100%] ml-[11px] grid grid-cols-3'>
             <div className="col-span-3 col-start-1  ">
                 <img src={img1} className="h-[100%] w-[100%]"/>
             </div>

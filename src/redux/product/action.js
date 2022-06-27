@@ -17,20 +17,6 @@ export const getCategories = async (dispatch) => {
     }
 }
 
-// // Get product by category
-// export const getProducts= async (dispatch, category) => {
-//     dispatch(getProductsStart());
-//     try {
-//         const res = await axios.get(`/v1/products?category=${category}`)
-//         dispatch(getProductsSuccess(res.data));
-//     }
-//     catch (err) {
-//         message.error({
-//             title: "Get all products failed",
-//             content: err.response.data.message
-//         })
-//     }
-// }
 
 //get product by category
 export const getProducts= async (dispatch, category) => {

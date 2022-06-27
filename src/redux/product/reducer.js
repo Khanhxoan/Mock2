@@ -39,11 +39,11 @@ const productSlice = createSlice({
             state.product.error = false
         },
         getSingleProductSuccess: (state, action) => {
-            state.product = action.payload;
-            state.status = 'success'
+            state.product.product = action.payload;
+            state.product.status = 'success'
         },
         getSingleProductFailed: (state) => {
-            state.status = 'rejected'
+            state.product.status = 'rejected'
         }
 
     }

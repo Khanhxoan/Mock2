@@ -1,28 +1,66 @@
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux';
-import Login from '../Components/auth/Login';
-import TopBar from '../Components/TopBar'
-import { selectAllCategories } from '../redux/product/selector';
-import { Outlet } from "react-router-dom"
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import Login from "../Components/auth/Login";
+import TopBar from "../Components/TopBar";
+import { selectAllCategories } from "../redux/product/selector";
+import { Outlet } from "react-router-dom";
 import "./modal.css";
+import { getCategories } from "../redux/product/action";
+import Register from "../Components/auth/Register";
+import Forgot from "../Components/auth/Forgot";
 
 const LayoutUser = () => {
-  const allCategories = useSelector(selectAllCategories)
-  const [modal, setModal] = useState(false)
+  const [modalLogin, setModalLogin] = useState(false);
+  const [modalRegister, setModalRegister] = useState(false);
+  const [modalForgotPass, setModalForgotPass] = useState(false);
 
-  
   return (
     <div>
       <header>
-        <TopBar modal={modal} setModal={setModal}/>
+        <TopBar
+          modalLogin={modalLogin}
+          setModalLogin={setModalLogin}
+          modalRegister={modalRegister}
+          setModalRegister={setModalRegister}
+    />
       </header>
       <Outlet />
-      {modal && 
-        <div className='mt-[-1125px] w-[1440px] ml-[304px]'>
-          <Login modal={modal} setModal={setModal}/>
-        </div>}
+      {modalLogin && (
+        <div className="flex w-[1440px] h-screen bottom-0 fixed bg-[#1111114D] ">
+          <div className="mx-auto mt-[258px] overflow">
+            <Login
+              modalLogin={modalLogin}
+              setModalLogin={setModalLogin}
+              modalForgotPass={modalForgotPass}
+              setModalForgotPass={setModalForgotPass}
+            />
+          </div>
+        </div>
+      )}
+      {modalRegister && (
+        <div className="flex w-[1440px] h-screen bottom-0 fixed bg-[#1111114D] ">
+          <div className="mx-auto mt-[258px] overflow">
+            <Register
+              modalRegister={modalRegister}
+              setModalRegister={setModalRegister}
+            />
+          </div>
+        </div>
+      )}
+      {modalForgotPass && (
+        <div className="flex w-[1440px] h-screen bottom-0 fixed bg-[#1111114D] ">
+          <div className="mx-auto mt-[258px] overflow">
+            <Forgot
+              modalForgotPass={modalForgotPass}
+              setModalForgotPass={setModalForgotPass}
+              modalLogin={modalLogin}
+              setModalLogin={setModalLogin}
+            />
+          </div>
+        </div>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default LayoutUser
+export default LayoutUser;

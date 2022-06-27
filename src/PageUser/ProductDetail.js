@@ -13,13 +13,13 @@ import RelatedProducts from "../Components/RelatedProduct";
 
 function ProductDetail() {
   const [rating, setRating] = useState(0);
-  const dispatch = useDispatch();
   const product = useSelector(selectSingleProduct);
-  console.log(product)
+  console.log(product);
   const image = useSelector(selectImage);
+  console.log(image);
   const changeRating = (newRating) => {
-    setRating(newRating)
-  }
+    setRating(newRating);
+  };
   return (
     <div>
       <div>
@@ -27,10 +27,16 @@ function ProductDetail() {
         <div className="w-[1439px] h-[612px] relative flex bg-[#FFFDFD] mx-auto">
           <div className="absolute left-[143px] top-[12px] flex flex-col">
             <div>
-              <img src={image.url} className="w-[474px] h-[474px] rounded-[5px]" />
+              <img
+                src={image.url}
+                className="w-[474px] h-[474px] rounded-[5px]"
+              />
             </div>
             <div className="flex w-[474px] h-[87px] mt-[21px]">
-              <img src={image.url} className="w-[87px] h-[87px] rounded-[5px]" />
+              <img
+                src={image.url}
+                className="w-[87px] h-[87px] rounded-[5px]"
+              />
               <img
                 src={image.url}
                 className="w-[87px] h-[87px] ml-[11px] rounded-[5px]"
@@ -132,7 +138,14 @@ function ProductDetail() {
                 <div className="mt-[11.92px] h-[25px] font-roboto font-bold text-[16px] text-[#5A5A5A] leading-[18.75px] ">
                   <p>Rate:</p>
                 </div>
-                <StarRatings rating={rating} changeRating={changeRating} starHoverColor="#FFD333" starRatedColor="#FFD333" starDimension="20px" starSpacing="0"/>
+                <StarRatings
+                  rating={rating}
+                  changeRating={changeRating}
+                  starHoverColor="#FFD333"
+                  starRatedColor="#FFD333"
+                  starDimension="20px"
+                  starSpacing="0"
+                />
               </div>
             </div>
           </div>

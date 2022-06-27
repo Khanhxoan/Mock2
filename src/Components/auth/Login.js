@@ -3,22 +3,22 @@ import "antd/dist/antd.css";
 import { CgClose } from "react-icons/cg";
 import { useDispatch } from "react-redux";
 import imgApp from "../imgs/shopApp.png"
-// import { login } from "../redux/auth/action";
-// import { useNavigate } from "react-router-dom";
+import { login } from "../../redux/auth/action";
+import { useNavigate } from "react-router-dom";
 
-function Login({modal, setModal}) {
+function Login({modalLogin, setModalLogin, modalForgotPass, setModalForgotPass}) {
   const [user, setUser] = useState({
     email: "",
     password: "",
     deviceId: "",
   });
   const dispatch = useDispatch();
-//   const nav = useNavigate();
-//   const handleLogin = (e) => {
-//     e.preventDefault();
-//     console.log(user);
-//     dispatch(login(user, dispatch, nav));
-//   };
+  const nav = useNavigate();
+  const handleLogin = (e) => {
+    e.preventDefault();
+    console.log(user);
+    dispatch(login(user, dispatch, nav));
+  };
 
   const onChangeInput = function (event) {
     const { name, value } = event.target;
@@ -34,7 +34,7 @@ function Login({modal, setModal}) {
     <div className="relative w-[832px] h-[395px] rounded-[20px] shadow-login">
       <div className="absolute w-[416px] h-[395px] bg-[white] rounded-l-lg ">
         <form
-        //   onSubmit={handleLogin}
+          onSubmit={handleLogin}
           className="absolute w-[319.17px] h-[247px] left-[47px] top-[51px]"
         >
           <p className="not-italic font-bold text-[24px] leading-7 font-roboto">
@@ -63,7 +63,11 @@ function Login({modal, setModal}) {
               />
               <a
                 className="w-[48px] h-[14px] ml-[70px] not-italic font-bold text-[12px] text-[#646464] font-roboto my-auto leading-[14px]"
-                href="/forgot"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setModalLogin(!modalLogin)
+                  setModalForgotPass(!modalForgotPass)
+                }}
               >
                 Forgot?
               </a>
@@ -89,7 +93,7 @@ function Login({modal, setModal}) {
         <img className="rounded-r-lg" src={imgApp} alt="Sample image" />
       </div>
       <button>
-        <CgClose onClick={() => {setModal(!modal)}} className="box-border text-[24px] absolute w-[31px] h-[31px] left-[791px] top-[10px] bg-[#ffffff] rounded-[15px] shadow-login border-solid border-[#e4e4e4]"  />
+        <CgClose onClick={() => {setModalLogin(!modalLogin)}} className="box-border text-[24px] absolute w-[31px] h-[31px] left-[791px] top-[10px] bg-[#ffffff] rounded-[15px] shadow-login border-solid border-[#e4e4e4]"  />
       </button>
     </div>
   );
