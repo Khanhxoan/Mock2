@@ -6,7 +6,7 @@ import imgApp from "../imgs/shopApp.png"
 import { login } from "../../redux/auth/action";
 import { useNavigate } from "react-router-dom";
 
-function Login({modalLogin, setModalLogin, modalForgotPass, setModalForgotPass}) {
+function Login({modalLogin, setModalLogin, modalForgotPass, setModalForgotPass, modalRegister, setModalRegister}) {
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -82,7 +82,11 @@ function Login({modalLogin, setModalLogin, modalForgotPass, setModalForgotPass})
           <div className=" w-[295px] h-[16px] text-center mt-[17px] ml-[11.64px]">
             <a
               className="w-[295px] h-[16px] not-italic font-bold text-[14px] leading-4 text-[#646464] font-roboto"
-              href="/register"
+              onClick={(e) => {
+                e.preventDefault();
+                setModalLogin(!modalLogin)
+                setModalRegister(!modalRegister)
+              }}
             >
               Create An Account
             </a>

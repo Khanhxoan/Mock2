@@ -33,6 +33,8 @@ const LayoutUser = () => {
               setModalLogin={setModalLogin}
               modalForgotPass={modalForgotPass}
               setModalForgotPass={setModalForgotPass}
+              modalRegister={modalRegister}
+              setModalRegister={setModalRegister}
             />
           </div>
         </div>
@@ -43,6 +45,8 @@ const LayoutUser = () => {
             <Register
               modalRegister={modalRegister}
               setModalRegister={setModalRegister}
+              modalLogin={modalLogin}
+              setModalLogin={setModalLogin}
             />
           </div>
         </div>

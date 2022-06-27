@@ -6,7 +6,7 @@ import { register } from "../../redux/auth/action"
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-function Register({modalRegister, setModalRegister}) {
+function Register({modalRegister, setModalRegister, modalLogin, setModalLogin}) {
   const [show, setShow] = useState(false);
 
   const handleshow = (e) => {
@@ -115,7 +115,11 @@ function Register({modalRegister, setModalRegister}) {
           <div className=" w-[295px] h-[16px] text-center mt-[13px] ml-[11px]">
             <a
               className="w-[295px] h-[16px] not-italic font-bold text-[14px] leading-4 text-[#646464] font-roboto"
-              href="/login"
+              onClick={(e) => {
+                e.preventDefault();
+                setModalRegister(!modalRegister);
+                setModalLogin(!modalLogin);
+              }}
             >
               Login
             </a>
