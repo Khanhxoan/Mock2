@@ -22,7 +22,7 @@ const LayoutUser = () => {
           setModalLogin={setModalLogin}
           modalRegister={modalRegister}
           setModalRegister={setModalRegister}
-    />
+        />
       </header>
       <Outlet />
       {modalLogin && (

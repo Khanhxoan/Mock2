@@ -13,6 +13,9 @@ import ProductDetail from './PageUser/ProductDetail';
 import { useEffect } from 'react';
 import { getCategories } from './redux/product/action';
 import { useDispatch } from "react-redux"
+import AppBarAdmin from './Components/AppBarAdmin';
+import ProductCreatePage from './PageAdmin/ProductCreatePage';
+import ProductUpdatePage from './PageAdmin/ProductUpdatePage';
 
 function App() {
   return (
@@ -24,6 +27,10 @@ function App() {
               <Route path="/productpage" element={<Productpage/>} />
               <Route path="/productdetail" element={<ProductDetail/>} />
               <Route path="/" element={<Home/>} />
+            </Route>
+            <Route path="/admin" element={<LayoutAdmin />}>
+              <Route path='/admin/createproduct' element={<ProductCreatePage />} />
+              <Route path='/admin/updateproduct' element={<ProductUpdatePage />} />
             </Route>
           </Routes>
       </BrowserRouter>

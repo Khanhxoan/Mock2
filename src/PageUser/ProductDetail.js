@@ -1,27 +1,97 @@
 import React from "react";
-import { BsCartPlus } from "react-icons/bs";
-import { useSelector, useDispatch } from "react-redux";
-import { useState } from "react";
-import { selectImage, selectSingleProduct } from "../redux/product/selector";
-import StarRatings from "react-star-ratings";
-import NavTabs from "../Components/NavTabs";
-import Rating from "../Components/Rating";
+import TopBar from "../Components/TopBar";
 import ProductDetailBar from "../Components/ProductDetailBar";
 import Review from "../Components/Review";
 import WriteReview from "../Components/WriteReview";
 import RelatedProducts from "../Components/RelatedProduct";
+import { BsCartPlus } from "react-icons/bs";
+import Rating from "../Components/Rating";
+
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState,  } from "react";
+import {
+  selectImage,
+  selectSingleProduct,
+} from "../redux/product/selector";
+import StarRatings from "react-star-ratings";
+import NavTabs from "../Components/NavTabs";
+import {
+  selectAccessToken,
+  selectAuth,
+  selectUserID,
+} from "../redux/auth/selector";
+import { createNewCart, addNewItemToCart, getCartById } from "../redux/Cart/actions";
+import { selectAllCart, selectNewCartId } from "../redux/Cart/selectors";
 
 function ProductDetail() {
   const [rating, setRating] = useState(0);
+  const [quantity, setQuantity] = useState(1);
+  const [flag, setFlag] = useState(false);
+  const dispatch = useDispatch();
   const product = useSelector(selectSingleProduct);
-  console.log(product);
+  const auth = useSelector(selectAuth);
+  const userID = useSelector(selectUserID);
+  const accessToken = useSelector(selectAccessToken);
   const image = useSelector(selectImage);
-  console.log(image);
+  const cart = useSelector(selectAllCart);
+  const newCartId = useSelector(selectNewCartId)
+  // console.log(cart[0]?.data?.cart.id);
+
+
   const changeRating = (newRating) => {
     setRating(newRating);
   };
+  const handleDecrease = () => {
+    setQuantity(quantity - 1);
+    if (quantity <= 1) {
+      setQuantity(1);
+    }
+  };
+  useEffect(() => {
+    getCartById(accessToken, newCartId, dispatch)
+  }, [])
+  const handleIncrease = () => {
+    setQuantity(quantity + 1);
+  };
+  const handleAddToCart = async () => {
+    const newCart = {
+      totalPrice: 5000,
+      userId: userID,
+    };
+    const newItemArr = [
+      {
+        productId: product.id,
+        quantity: quantity,
+        price: product.price,
+        total: quantity * product.price,
+      },
+    ];
+    const item = {
+      cart: newCart,
+      itemArr: newItemArr,
+    };
+    const cartItem = {
+      cartId: cart[0]?.data?.cart.id,
+      productId: product.id,
+      quantity: quantity,
+      price: product.price,
+      total: quantity * product.price,
+    };
+    if (cart.length == 0) {
+      await createNewCart(accessToken, item, dispatch);
+      getCartById(accessToken, cart[0]?.data?.cart.id, dispatch)
+      setFlag(!flag);
+    } else if (cart.length >= 1) {
+      await addNewItemToCart(accessToken, cartItem, dispatch);
+      setFlag(!flag);
+    }
+  };
   return (
-    <div>
+    <div className="absolute top-[170px]">
+      <header>
+        <TopBar />
+      </header>
       <div>
         <NavTabs />
         <div className="w-[1439px] h-[612px] relative flex bg-[#FFFDFD] mx-auto">
@@ -118,17 +188,26 @@ function ProductDetail() {
                 </div>
                 <div className="mt-[11.45px] flex h-[45px]">
                   <div className="w-[162.37px] h-[42.08px] bg-[#E2E4E5] border border-solid border-[#959595] rounded-[5px] flex">
-                    <button className="flex-1 text-[#33A0FF] text-[24px] ">
+                    <button
+                      onClick={handleDecrease}
+                      className="flex-1 text-[#33A0FF] text-[24px] "
+                    >
                       -
                     </button>
                     <p className="flex-1 font-roboto text-[16px] text-[#959595] leading-[19.49px] font-light text-center py-[12px]">
-                      1
+                      {quantity}
                     </p>
-                    <button className="flex-1 text-[#33A0FF] text-[24px]">
+                    <button
+                      onClick={handleIncrease}
+                      className="flex-1 text-[#33A0FF] text-[24px]"
+                    >
                       +
                     </button>
                   </div>
-                  <button className="w-[164px] flex h-[42px] bg-[#FFD333] rounded-[5px] ml-[18.63px]">
+                  <button
+                    className="w-[164px] flex h-[42px] bg-[#FFD333] rounded-[5px] ml-[18.63px]"
+                    onClick={() => handleAddToCart()}
+                  >
                     <BsCartPlus className="ml-[29px] w-[15px] h-[15px] mt-[13px] text-[#212529]" />
                     <p className="w-[80px] h-[20px] font-roboto font-bold text-[16px] ml-[7px] mt-[8px]">
                       Add to cart

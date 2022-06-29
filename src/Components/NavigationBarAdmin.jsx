@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { MdDashboard } from "react-icons/md"
 import { FiDatabase, FiUser, FiShoppingCart, FiSettings } from "react-icons/fi"
+import { Link } from "react-router-dom";
 
 const NavigationBarAdmin = () => {
   const [dropProduct, setDropProduct] = useState ('false')
@@ -36,10 +37,9 @@ const NavigationBarAdmin = () => {
           <li>
             <a className="item-menuadmin" href="#">
                 <div className="flex items-center">
-                    <MdDashboard />
+                    <MdDashboard/>
                     <p className="pmenu-admin">Dashboard</p>
                 </div>
-                <IoIosArrowForward className="text-[24px] font-extrabold" />
             </a>
           </li>
           <li >
@@ -57,7 +57,7 @@ const NavigationBarAdmin = () => {
                 <a href="#" className="psubmenu-admin">Product List</a>
               </li>
               <li className="lisubmenu-admin">
-                <a href="#" className="psubmenu-admin">Product Detail</a>  
+                <Link className="psubmenu-admin" to="/admin/createproduct">Add Product</Link>  
               </li>
             </ul>
           </li>
@@ -105,7 +105,6 @@ const NavigationBarAdmin = () => {
               <FiSettings />
               <p className="pmenu-admin">Settings</p>
               </div>
-              <IoIosArrowForward className="text-[24px] font-extrabold" />
             </a>
           </li>
         </ul>

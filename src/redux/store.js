@@ -1,4 +1,5 @@
 import productReducer from './product/reducer'
+import authReducer from './auth/reducer'
 
 import { encryptTransform } from "redux-persist-transform-encrypt";
 import {
@@ -16,6 +17,7 @@ import {
   const { configureStore, combineReducers } = require("@reduxjs/toolkit");
 
   const rootReducer = combineReducers({
+    auth: authReducer,
     products: productReducer,
   });
   

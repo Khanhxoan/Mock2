@@ -4,7 +4,7 @@ import { IoIosArrowForward } from 'react-icons/io'
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories, getProducts } from "../redux/product/action";
 import { selectAllCategories, selectAllProducts } from "../redux/product/selector";
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import axios from "../redux/axios";
 import { getCategoriesFailed, getCategoriesSuccess } from "../redux/product/reducer";
 
@@ -27,7 +27,7 @@ const Categories = () => {
   return (
     <div>
       <nav>
-        <div className="w-[280px] bg-[#3D464D] ">
+        <div className="w-[280px] bg-[#3D464D] h-[628px] ">
           <header className="flex items-center h-[91px]">
             <HiOutlineMenuAlt1 className='text-[30px] ml-[22.79px] text-[white] '/>
             <p className="text-[32px] ml-[20.04px] mb-0 text-[white] font-[700] leading-[36.8px]">Categories</p>
@@ -36,7 +36,7 @@ const Categories = () => {
             {allCategories?.map((category) => {
               return (
                 <li >
-                  <a className="categories-a" href="#" onClick={() => handleGetProducts(category)}>
+                  <a className="categories-a" onClick={() => handleGetProducts(category)}>
                     <p className="categories-pitem">{category}</p>
                     <IoIosArrowForward className="text-[24px] font-extrabold"/>
                   </a>

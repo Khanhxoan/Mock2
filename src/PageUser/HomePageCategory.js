@@ -3,23 +3,23 @@ import { BsCartPlus } from "react-icons/bs";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { selectAllProducts } from "../redux/product/selector";
 import {
   getAllProducts,
   getSingleProduct,
 } from "../redux/product/action";
+import { RiArrowRightSLine } from "react-icons/ri";
+import { RiArrowLeftSLine } from "react-icons/ri";
 import StarRatings from "react-star-ratings";
+import TopBar from "../Components/TopBar";
 import PaginationHome from "./PaginationHomepage";
 import NavTabs from "../Components/NavTabs";
-import { selectAllProducts } from "../redux/product/selector";
 
 function Productpage() {
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const products = useSelector(selectAllProducts);
-  useEffect(() => {
-    console.log(products);
-  })
 
   const handleClick = async (id) => {
     await getSingleProduct(dispatch, id);
@@ -27,9 +27,9 @@ function Productpage() {
   };
 
   return (
-    <div>
+    <div className="absolute top-[170px]">
       <NavTabs />
-      <div className="w-[1350px] grid grid-cols-4 gap-[0px] my-[20px] mx-[60px]">
+      <div className="w-[1440px] grid grid-cols-4 gap-4 my-[20px] mx-auto ">
         {products?.map((product) => (
           <div
             key={product.id}

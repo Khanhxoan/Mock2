@@ -10,6 +10,7 @@ module.exports = {
 
     },
     fontFamily: {
+      "WorkSans": ["Work Sans"],
       "redrose": ["Red Rose"],
       'sans': ['Arial', 'Helvetica', 'sans-serif'],
       'Almarai': ['Almarai'],

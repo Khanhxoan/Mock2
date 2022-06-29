@@ -14,10 +14,10 @@ function Login({modalLogin, setModalLogin, modalForgotPass, setModalForgotPass, 
   });
   const dispatch = useDispatch();
   const nav = useNavigate();
-  const handleLogin = (e) => {
+  const handleLogin =  async (e) => {
     e.preventDefault();
-    console.log(user);
-    dispatch(login(user, dispatch, nav));
+    await login(user, dispatch, nav);
+    setModalLogin(!modalLogin)
   };
 
   const onChangeInput = function (event) {

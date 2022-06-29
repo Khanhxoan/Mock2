@@ -25,6 +25,11 @@
     .ulsubmenu-admin {
         @apply hidden
     }
+    
+
+    .name-field {
+        @apply mb-0 text-[black] text-[18px] leading-[20.7px] font-bold
+    }
 
     /* HoangNX */
     .title-left{

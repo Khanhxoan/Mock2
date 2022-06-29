@@ -30,11 +30,11 @@ function Register({modalRegister, setModalRegister, modalLogin, setModalLogin}) 
     password: "",
   });
   const dispatch = useDispatch();
-  const nav = useNavigate();
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    console.log(user);
-    dispatch(register(user, nav));
+    await register(user);
+    setModalRegister(!modalRegister);
+    setModalLogin(!modalLogin)
   };
 
   const onChangeInput = function (event) {

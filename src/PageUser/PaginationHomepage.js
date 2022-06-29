@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { RiArrowRightSLine } from "react-icons/ri";
 import { RiArrowLeftSLine } from "react-icons/ri";
-import { useDispatch } from "react-redux";
-
+import { useSelector, useDispatch } from "react-redux";
 const PaginationHome = () => {
   let [num, setNum] = useState(1);
   let [cur, setCur] = useState(1);
