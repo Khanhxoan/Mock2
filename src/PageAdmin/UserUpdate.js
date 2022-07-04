@@ -144,7 +144,7 @@ const UserUpdatePage = () => {
                   <h1 className="mb-0 text-[35px] leading-[41.06px] font-WorkSans">
                     Update User #654
                   </h1>
-                  <p className="mb-0">User ID: 654</p>
+                  <p className="mb-[-21.5px]">User ID: 654</p>
                 </div>
                 <button
                   type="submit"

@@ -8,10 +8,14 @@ const selectAuth = createSelector(
   [selectAuthen],
   (authSlice) => authSlice?.auth
 );
+export const selectIsfetching = createSelector(
+  [selectAuthen],
+  (authSlice) => authSlice?.isFetching
+)
 
 //---------------user--------------------------------
 
-const selectUser = createSelector([selectAuth], (auth) => auth?.data?.user);
+export const selectUser = createSelector([selectAuth], (auth) => auth?.data?.user);
 
 export const selectRole = createSelector([selectUser], (user) => user?.role);
 

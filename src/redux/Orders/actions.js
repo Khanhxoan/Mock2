@@ -11,6 +11,7 @@ import {
   updateOrderSuccess,
   getOrderSuccess,
 } from "./reducer";
+import { message } from "antd"
 
 
 export const createNewOrder = async (
@@ -85,3 +86,18 @@ export const getMyOrder = async (accessToken, dispatch,page) => {
     console.log(err)
   }
 }
+
+export const getAllOrder = async (accessToken, dispatch) => {
+  try {
+    const { data } = await axios.get('/v1/orders/my-orders', {
+      headers: { Authorization: `Bearer ${accessToken}` },
+    });
+    console.log(data);
+    dispatch(getAllOrderSuccess(data));
+  } catch (error) {
+    message.error({
+      title: 'Get orders failed',
+      content: error.response.data.message,
+    });
+  }
+};

@@ -126,7 +126,7 @@ const ProductCreatePage = () => {
                 <h1 className="mb-0 text-[35px] leading-[41.06px] font-WorkSans">
                   Update Product #423
                 </h1>
-                <p>Product ID : 423</p>
+                <p className="mb-[-21.5px]">Product ID : 423</p>
                 </div>
                 
                 <button

@@ -242,6 +242,7 @@ const ProductCreatePage = () => {
                         style={{ borderColor: "#929395", borderWidth: "1px" }}
                         className="name-field"
                         value={imageUrl}
+                        onChange= {(e) => {setImageUrl(e.target.value)}}
                       />
                     </div>
                   </Form.Item>
@@ -260,7 +261,7 @@ const ProductCreatePage = () => {
                       style={{
                         width: "100%",
                       }}
-                      placeholder="select one country"
+                      placeholder="select one category"
                       optionLabelProp="label"
                       className="name-field"
                     >

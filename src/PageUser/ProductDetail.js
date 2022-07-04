@@ -22,6 +22,7 @@ import {
 } from "../redux/auth/selector";
 import { createNewCart, addNewItemToCart, getCartById } from "../redux/Cart/actions";
 import { selectAllCart, selectNewCartId } from "../redux/Cart/selectors";
+import { getSingleProduct } from "../redux/product/action";
 
 function ProductDetail() {
   const [rating, setRating] = useState(0);
@@ -49,6 +50,12 @@ function ProductDetail() {
   useEffect(() => {
     getCartById(accessToken, newCartId, dispatch)
   }, [])
+
+  useEffect(() => {
+    getSingleProduct(dispatch, product.id)
+
+  }, [flag])
+
   const handleIncrease = () => {
     setQuantity(quantity + 1);
   };
@@ -227,7 +234,7 @@ function ProductDetail() {
 
         <ProductDetailBar />
         <Review />
-        <WriteReview />
+        <WriteReview flag={flag} setFlag={setFlag} />
         <RelatedProducts />
       </div>
     </div>

@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Outlet, useNavigate } from 'react-router-dom';
 import NavTabs from '../Components/NavTabs';
-import { logout } from '../redux/auth/action';
+import { getMyProfile, logout } from '../redux/auth/action';
 import {
   selectAccessToken,
   selectAuthen,
   selectDeviceId,
   selectRefreshToken,
 } from '../redux/auth/selector';
-import { getAllOrder } from '../redux/order/action';
+import { getAllOrder } from '../redux/Orders/actions';
 
 function UserDetail() {
   const nav = useNavigate();
@@ -19,12 +19,13 @@ function UserDetail() {
   const deviceId = useSelector(selectDeviceId);
   const auth = useSelector(selectAuthen);
   console.log(auth);
-  const handleMyprofile = async () => {
-    await getAllOrder(accessToken, dispatch);
+  const handleMyprofile = () => {
+    // await getAllOrder(accessToken, dispatch);
     nav('/userdetail/myprofile');
   };
-  const handleOrder = async () => {
-    await getAllOrder(accessToken, dispatch);
+
+  const handleOrder = () => {
+    // await getAllOrder(accessToken, dispatch);
     nav('/orderhistory');
   };
   const handleLogout = async () => {

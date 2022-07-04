@@ -31,6 +31,7 @@ const orderSlice = createSlice({
     },
     getAllOrderSuccess: (state, action) => {
       state.status = "success";
+      // state.order = action.payload;
       state.allOrder = action.payload;
     },
     getAllOrderFailed: (state) => {

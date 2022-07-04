@@ -32,7 +32,7 @@ function Register({modalRegister, setModalRegister, modalLogin, setModalLogin}) 
   const dispatch = useDispatch();
   const handleRegister = async (e) => {
     e.preventDefault();
-    await register(user);
+    await register(dispatch, user);
     setModalRegister(!modalRegister);
     setModalLogin(!modalLogin)
   };

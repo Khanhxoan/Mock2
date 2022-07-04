@@ -5,7 +5,7 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 import { FiUser } from "react-icons/fi";
 import { Avatar, Dropdown, Image, Menu, Modal } from "antd";
 import { AiOutlineLogin, AiOutlineUserAdd } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectAccessToken,
@@ -17,6 +17,9 @@ import { logout } from "../redux/auth/action";
 import CartPopup from "./CartPopup";
 import { selectAllCart, selectNewCart } from "../redux/Cart/selectors";
 import { getCartById } from "../redux/Cart/actions";
+import { searchProduct } from "../redux/product/action";
+import { getAllOrder } from "../redux/Orders/actions";
+
 
 const TopBar = ({
   modalLogin,
@@ -28,12 +31,14 @@ const TopBar = ({
   const dispatch = useDispatch();
   const [modal, setModal] = useState(false);
   const [flag, setFlag] = useState(false);
-
+  const [keyword, setKeyword] = useState("");
 
   const accessToken = useSelector(selectAccessToken);
   const userAvatar = useSelector(selectAvatar);
   const refreshToken = useSelector(selectRefreshToken);
-  const deviceId = useSelector(selectDeviceId)
+  const deviceId = useSelector(selectDeviceId);
+
+  console.log(userAvatar);
 
   console.log(refreshToken);
   const toggleCartModal = () => {
@@ -48,7 +53,22 @@ const TopBar = ({
     getCartById(accessToken, cart[0]?.data?.cart.id, dispatch);
     setFlag(!flag);
   }, [cart]);
-  console.log(newCart?.data?.items.length);
+
+  const handleSearch = () => {
+    searchProduct(dispatch, keyword);
+    navigate("/productsearch", { state: { keyword: keyword } });
+  };
+  const handleSubmit = (e) => {
+    if (e.keyCode === 13) {
+      searchProduct(dispatch, keyword);
+      navigate("/productsearch", { state: { keyword: keyword } });
+    }
+  };
+
+  const handleMyprofile = async () => {
+    await getAllOrder(accessToken, dispatch);
+    navigate('/userdetail/myprofile');
+  };
 
   const menu1 = (
     <Menu
@@ -106,17 +126,13 @@ const TopBar = ({
           key: "1",
           label: (
             <div className="flex items-center text-[20px]">
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
                 className="text-[20px] ml-[10px] text-[black]"
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigate('/')
-                }}
+                to="/userdetail/myprofile"
+                onClick={handleMyprofile}
               >
                 My Profile
-              </a>
+              </Link>
             </div>
           ),
         },
@@ -148,7 +164,7 @@ const TopBar = ({
                 className="text-[20px] ml-[10px] text-[black]"
                 onClick={(e) => {
                   e.preventDefault();
-                  logout(dispatch, refreshToken, deviceId )
+                  logout(dispatch, refreshToken, deviceId, navigate);
                 }}
               >
                 Logout
@@ -177,14 +193,12 @@ const TopBar = ({
         </a>
       </div>
       <div className="flex items-center h-[124px] justify-between ml-[163px] mr-[171px]">
-        <a
+        <Link
           className="font-bold text-[white] hover:text-[white] font-redrose text-[36px] mb-0"
-          onClick={() => {
-            navigate("/");
-          }}
+          to="/"
         >
           SHOP APP
-        </a>
+        </Link>
         <div className="w-[748px] flex bg-[#C4C4C4] ml-[29.34px] h-[50.35px] items-center rounded-[5px] justify-between">
           <div className="flex items-center">
             <HiOutlineMenuAlt1 className="justify-center text-[30px] text-[#4B4B4B] " />
@@ -192,12 +206,17 @@ const TopBar = ({
               Categories
             </p>
             <input
+              onKeyDown={(e) => handleSubmit(e)}
               type="search"
-              className="ml-[12px] h-[29px] w-[270px] bg-[#C4C4C4] text-[#4B4B4B] border-none"
+              className="ml-[12px] h-[29px] w-[270px] bg-[#C4C4C4] text-[#4B4B4B] focus:outline-none text-[20px]"
               placeholder="Search Items"
+              onChange={(e) => setKeyword(e.target.value)}
             />
           </div>
-          <BiSearch className="text-[30px] cursor-pointer text-[#4B4B4B] mr-[9.37px]" />
+          <BiSearch
+            onClick={() => handleSearch()}
+            className="text-[30px] cursor-pointer text-[#4B4B4B] mr-[9.37px]"
+          />
         </div>
         <div className="flex items-center ">
           <MdOutlineShoppingCart
@@ -238,8 +257,8 @@ const TopBar = ({
       </div>
       {modal && newCart?.data?.items.length >= 1 ? (
         <div className="w-[1440px] h-screen top-[160px] left-0 right-0 bottom-0 fixed z-50">
-          <div className="w-full h-full left-0 right-0 bottom-0 fixed  z-50 bg-[#1111114D]">
-            <div className="absolute left-[950px] right-[177px] top-[160px] w-[360px] max-h-[500px] overflow-scroll">
+          <div className="w-full h-full top-[160px] left-0 right-0 bottom-0 fixed  z-50 bg-[#1111114D]">
+            <div className="absolute left-[950px] right-[177px] w-[360px] max-h-[500px] overflow-scroll">
               <CartPopup toggleCartModal={toggleCartModal} />
             </div>
           </div>
@@ -250,8 +269,8 @@ const TopBar = ({
             onClick={toggleCartModal}
             className="w-[1440px] h-screen top-[160px] left-0 right-0 bottom-0 fixed  z-50 "
           >
-            <div className="w-full h-full left-0 right-0 bottom-0 fixed  z-50 bg-[#1111114D]">
-              <div className="absolute left-[950px] mt-[160px] right-[177px] top-[8px] w-[360px]">
+            <div className="w-full h-full top-[160px] left-0 right-0 bottom-0 fixed  z-50 bg-[#1111114D]">
+              <div className="absolute left-[950px] right-[177px] top-[8px] w-[360px]">
                 <div className="absolute w-[338px] h-[113px] bg-[#FFF9F9] rounded-[5px] shadow-empty text-center">
                   <p className="h-[19px] w-[328px] mt-[45px]">
                     Your shopping cart is empty!

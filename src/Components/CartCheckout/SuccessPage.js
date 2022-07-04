@@ -44,9 +44,6 @@ function SuccessPage() {
   };
   return (
     <div className="absolute top-[155px]">
-      <header>
-        <TopBar />
-      </header>
       <div>
         <NavTabs />
         <div className="h-[865px] w-[1440px] flex justify-center ">

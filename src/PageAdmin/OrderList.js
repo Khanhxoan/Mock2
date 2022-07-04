@@ -15,11 +15,11 @@ function OrderList() {
   const role = useSelector(selectRole);
   const orderList = useSelector(selectAllOrderAdmin);
   const [page, setPage] = useState(1);
-  const [size, setSize] = useState(10);
+  const [size, setSize] = useState(4);
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
   let tableLength = orderList?.result?.length;
-  console.log(tableLength);
+  console.log(orderList);
 
   let [num, setNum] = useState(1);
   let [cur, setCur] = useState(1);
@@ -61,7 +61,7 @@ function OrderList() {
   };
 
   return (
-    <div className={`h-[100%] w-[100%] bg-[#eef1f4] relative `}>
+    <div className="h-[945px] bg-[#eef1f4] relative">
       <div className="absolute mx-[31px]">
         <div className="w-[226px] h-[18px] text-[18px] leading-[20.7px] text-[#929395]">
           <p>Dashboard / Order</p>
@@ -70,7 +70,7 @@ function OrderList() {
           <p>Orders</p>
         </div>
         <div
-          className={`w-[1153px] h-[calc(100vh_+_(84px)_*_${tableLength}_-_(250px))] bg-[#FFFFFF] shadow-md  mt-[31px] relative`}
+          className={`w-[1153px] h-[760px] bg-[#FFFFFF] shadow-md  mt-[31px] relative`}
         >
           <div className="absolute left-[30px] top-[43.92px] w-[1093px] h-[51.08px] border-[1.5px] border-[#C4C4C4]">
             <div className=" flex ">
@@ -87,8 +87,8 @@ function OrderList() {
             </div>
           </div>
           <hr className="absolute top-[125.9px] w-[1153px] border-t border-solid border-[black]" />
-          <div className={`absolute top-[126px] `}>
-            <table className="w-[1153px] ">
+          <div className='absolute top-[80px]'>
+            <table className="w-[1153px] mb-0">
               <tbody>
                 <tr className="h-[84px] ">
                   <th className="w-[80px] h-[20px] font-bold text-[20px] leading-[23px]">
@@ -168,8 +168,7 @@ function OrderList() {
                   <th className="w-[100px] h-[20px] font-bold text-[20px] leading-[23px]"></th>
                 </tr>
                 <tr className="w-[1153px] border-b border-solid border-[#929395]"></tr>
-                {orderList?.result
-                  .filter((val) => {
+                {orderList?.result?.filter((val) => {
                     if (searchTerm === "") {
                       return val;
                     } else if (
@@ -291,7 +290,7 @@ function OrderList() {
                     setSize(e.target.value);
                   }}
                   className="w-[50px] h-[30px] rounded-[2px] border border-solid border-[#929395] text-[16px] text-center mt-[2px] ml-[5px]"
-                  defaultValue={10}
+                  defaultValue={4}
                 />
               </div>
             </div>

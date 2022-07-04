@@ -3,6 +3,7 @@ import authReducer from './auth/reducer'
 import cartReducer from './Cart/reducer'
 import orderReducer from './Orders/reducer'
 import userReducer from './user/reducer'
+import adminReducer from './Admin/reducer'
 
 import { encryptTransform } from "redux-persist-transform-encrypt";
 import {
@@ -24,7 +25,8 @@ import {
     products: productReducer,
     cart: cartReducer,
     order: orderReducer,
-    user: userReducer 
+    user: userReducer,
+    admin: adminReducer 
   });
   
   const persistConfig = {

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import imgApp from '../Components/imgs/shopApp.png';
 import 'antd/dist/antd.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectOrders } from '../redux/order/selector';
+import { selectOrders } from '../redux/Orders/selectors';
 import { Form, Table } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import NavTabs from '../Components/NavTabs';
@@ -11,7 +10,8 @@ import {
   selectDeviceId,
   selectRefreshToken,
 } from '../redux/auth/selector';
-import { getAllOrder } from '../redux/order/action';
+import { getAllOrder } from '../redux/Orders/actions';
+import { logout } from '../redux/auth/action';
 
 function OrderHistory() {
   const nav = useNavigate();
@@ -30,12 +30,15 @@ function OrderHistory() {
     nav('/orderhistory');
   };
   const handleLogout = async () => {
-    await logout(refreshToken, deviceId);
+    await logout(dispatch, refreshToken, deviceId);
     nav('/');
   };
 
-  console.log('list order' + listOrder + listOrder[0]);
-  const listOrders = listOrder.map((item) => ({
+  useEffect(() => {
+    getAllOrder(accessToken, dispatch);
+  }, [accessToken])
+
+  const listOrders = listOrder?.map((item) => ({
     key: '#' + item.id,
     createdAt: item.createdAt.slice(0, 10),
     status: item.status,
@@ -44,7 +47,7 @@ function OrderHistory() {
   console.log(listOrders);
 
   const [form] = Form.useForm();
-  const [data, setData] = useState(listOrders.reverse());
+  const [data, setData] = useState(listOrders?.reverse());
 
   const columns = [
     {

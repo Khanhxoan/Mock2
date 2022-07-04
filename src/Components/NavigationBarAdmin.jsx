@@ -54,7 +54,7 @@ const NavigationBarAdmin = () => {
             </div>
             <ul className={dropProduct ? "static hidden" : "static block"}>
               <li className="lisubmenu-admin">
-                <a href="#" className="psubmenu-admin">Product List</a>
+                <Link className="psubmenu-admin" to="/admin/productlist">Product List</Link>
               </li>
               <li className="lisubmenu-admin">
                 <Link className="psubmenu-admin" to="/admin/createproduct">Add Product</Link>  
@@ -76,7 +76,7 @@ const NavigationBarAdmin = () => {
             </div>
             <ul className={dropUser ? "static hidden" : "static block"}>
               <li className="lisubmenu-admin">
-                <a className="psubmenu-admin">User List</a>
+                <Link className="psubmenu-admin" to="/admin/userlist">User List</Link>
               </li>
               <li className="lisubmenu-admin">
                 <Link className="psubmenu-admin" to="/admin/createuser">Add User</Link>  

@@ -10,11 +10,12 @@ module.exports = {
 
     },
     fontFamily: {
-      "WorkSans": ["Work Sans"],
-      "redrose": ["Red Rose"],
-      'sans': ['Arial', 'Helvetica', 'sans-serif'],
-      'Almarai': ['Almarai'],
-      'roboto': ['Roboto']
+      WorkSans: ["Work Sans"],
+      redrose: ["Red Rose"],
+      sans: ["Arial", "Helvetica", "sans-serif"],
+      Almarai: ["Almarai"],
+      roboto: ["Roboto"],
+      work: ["Work Sans"],
     },
     colors: {
       "menutopbar": "#F0E9E9",
