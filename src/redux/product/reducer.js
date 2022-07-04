@@ -14,6 +14,10 @@ const productSlice = createSlice({
             isFetching: false, 
             product: []
         },
+        newProduct: {
+            isFetching: false,
+            error: false,
+        }
     },
     reducers: {
         getCategoriesStart: (state) => {
@@ -44,11 +48,17 @@ const productSlice = createSlice({
         },
         getSingleProductFailed: (state) => {
             state.product.status = 'rejected'
+        },
+        createNewProductStart: (state) => {
+            state.newProduct.isFetching = true
+        },
+        createNewProductSuccess: (state) => {
+            state.newProduct.isFetching = false
         }
 
     }
 })
 
-export const { getCategoriesStart, getCategoriesSuccess, getProductsStart, getProductsSuccess, getCategoriesFailed, getProductsFailed, getSingleProductFailed, getSingleProductSuccess } = productSlice.actions;
+export const { getCategoriesStart, getCategoriesSuccess, getProductsStart, getProductsSuccess, getCategoriesFailed, getProductsFailed, getSingleProductFailed, getSingleProductSuccess, createNewProductStart, createNewProductSuccess } = productSlice.actions;
 
 export default productSlice.reducer;

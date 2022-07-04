@@ -1,4 +1,4 @@
-import axios from "../../Api/axios";
+import axios from "../axios";
 import {
   addToCartFailed,
   addToCartSuccess,

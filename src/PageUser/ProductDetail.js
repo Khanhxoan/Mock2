@@ -18,7 +18,6 @@ import StarRatings from "react-star-ratings";
 import NavTabs from "../Components/NavTabs";
 import {
   selectAccessToken,
-  selectAuth,
   selectUserID,
 } from "../redux/auth/selector";
 import { createNewCart, addNewItemToCart, getCartById } from "../redux/Cart/actions";
@@ -30,7 +29,6 @@ function ProductDetail() {
   const [flag, setFlag] = useState(false);
   const dispatch = useDispatch();
   const product = useSelector(selectSingleProduct);
-  const auth = useSelector(selectAuth);
   const userID = useSelector(selectUserID);
   const accessToken = useSelector(selectAccessToken);
   const image = useSelector(selectImage);
@@ -89,9 +87,6 @@ function ProductDetail() {
   };
   return (
     <div className="absolute top-[170px]">
-      <header>
-        <TopBar />
-      </header>
       <div>
         <NavTabs />
         <div className="w-[1439px] h-[612px] relative flex bg-[#FFFDFD] mx-auto">

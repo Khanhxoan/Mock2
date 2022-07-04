@@ -20,10 +20,16 @@ const authSlice = createSlice({
     logoutSuccess: (state) => {
       state.isFetching = false;
       state.auth = null;
-      debugger
+    },
+    refreshStart: (state) => {
+      state.isFetching = true;
+    },
+    refreshSuccess: (state, action) => {
+      state.isFetching = false;
+      state.auth.data.tokens = action.payload;
     },
   },
 });
 
-export const { loginSuccess, loginStart, logoutSuccess, logoutStart } = authSlice.actions;
+export const { loginSuccess, loginStart, logoutSuccess, logoutStart, refreshStart, refreshSuccess } = authSlice.actions;
 export default authSlice.reducer;

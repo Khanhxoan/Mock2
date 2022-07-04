@@ -3,7 +3,6 @@ import { HiOutlineMenuAlt1 } from "react-icons/hi";
 import { BiSearch } from "react-icons/bi";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { FiUser } from "react-icons/fi";
-import Login from "./auth/Login";
 import { Avatar, Dropdown, Image, Menu, Modal } from "antd";
 import { AiOutlineLogin, AiOutlineUserAdd } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
@@ -11,9 +10,13 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   selectAccessToken,
   selectAvatar,
+  selectDeviceId,
   selectRefreshToken,
 } from "../redux/auth/selector";
 import { logout } from "../redux/auth/action";
+import CartPopup from "./CartPopup";
+import { selectAllCart, selectNewCart } from "../redux/Cart/selectors";
+import { getCartById } from "../redux/Cart/actions";
 
 const TopBar = ({
   modalLogin,
@@ -23,12 +26,29 @@ const TopBar = ({
 }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [modal, setModal] = useState(false);
+  const [flag, setFlag] = useState(false);
+
 
   const accessToken = useSelector(selectAccessToken);
   const userAvatar = useSelector(selectAvatar);
   const refreshToken = useSelector(selectRefreshToken);
+  const deviceId = useSelector(selectDeviceId)
 
   console.log(refreshToken);
+  const toggleCartModal = () => {
+    setModal(!modal);
+  };
+  const newCart = useSelector(selectNewCart);
+  const cart = useSelector(selectAllCart);
+
+  // console.log(cart.length)
+
+  useEffect(() => {
+    getCartById(accessToken, cart[0]?.data?.cart.id, dispatch);
+    setFlag(!flag);
+  }, [cart]);
+  console.log(newCart?.data?.items.length);
 
   const menu1 = (
     <Menu
@@ -89,10 +109,10 @@ const TopBar = ({
               <a
                 target="_blank"
                 rel="noopener noreferrer"
-                href="#"
                 className="text-[20px] ml-[10px] text-[black]"
                 onClick={(e) => {
                   e.preventDefault();
+                  navigate('/')
                 }}
               >
                 My Profile
@@ -107,7 +127,6 @@ const TopBar = ({
               <a
                 target="_blank"
                 rel="noopener noreferrer"
-                href="#"
                 className="text-[20px] ml-[10px] text-[black]"
                 onClick={(e) => {
                   e.preventDefault();
@@ -129,7 +148,7 @@ const TopBar = ({
                 className="text-[20px] ml-[10px] text-[black]"
                 onClick={(e) => {
                   e.preventDefault();
-                  logout(dispatch, refreshToken);
+                  logout(dispatch, refreshToken, deviceId )
                 }}
               >
                 Logout
@@ -181,7 +200,27 @@ const TopBar = ({
           <BiSearch className="text-[30px] cursor-pointer text-[#4B4B4B] mr-[9.37px]" />
         </div>
         <div className="flex items-center ">
-          <MdOutlineShoppingCart className="text-[40px] ml-[30px] mb-0" />
+          <MdOutlineShoppingCart
+            className="text-[40px] ml-[30px] mb-0"
+            onClick={() => toggleCartModal()}
+          />
+          {newCart?.data?.items.length >= 1 ? (
+            <span
+              className="w-[27px] h-[27px]  rounded-full bg-[#FFFDFD] text-[#8C7211] text-[14px] 
+          ml-[-20px] mt-[-30px]
+          font-bold font-roboto text-center"
+            >
+              <p className="mt-[3px]">{newCart?.data?.items.length}</p>
+            </span>
+          ) : (
+            <span
+              className="w-[27px] h-[27px] hidden rounded-full bg-[#FFFDFD] text-[#8C7211] text-[14px] 
+          ml-[-20px] mt-[-30px]
+          font-bold font-roboto text-center"
+            >
+              <p className="mt-[3px]">{newCart?.data?.items.length}</p>
+            </span>
+          )}
           {accessToken ? (
             <Dropdown overlay={menu2} placement="bottom" arrow>
               <Avatar
@@ -197,6 +236,32 @@ const TopBar = ({
           )}
         </div>
       </div>
+      {modal && newCart?.data?.items.length >= 1 ? (
+        <div className="w-[1440px] h-screen top-[160px] left-0 right-0 bottom-0 fixed z-50">
+          <div className="w-full h-full left-0 right-0 bottom-0 fixed  z-50 bg-[#1111114D]">
+            <div className="absolute left-[950px] right-[177px] top-[160px] w-[360px] max-h-[500px] overflow-scroll">
+              <CartPopup toggleCartModal={toggleCartModal} />
+            </div>
+          </div>
+        </div>
+      ) : (
+        modal && (
+          <div
+            onClick={toggleCartModal}
+            className="w-[1440px] h-screen top-[160px] left-0 right-0 bottom-0 fixed  z-50 "
+          >
+            <div className="w-full h-full left-0 right-0 bottom-0 fixed  z-50 bg-[#1111114D]">
+              <div className="absolute left-[950px] mt-[160px] right-[177px] top-[8px] w-[360px]">
+                <div className="absolute w-[338px] h-[113px] bg-[#FFF9F9] rounded-[5px] shadow-empty text-center">
+                  <p className="h-[19px] w-[328px] mt-[45px]">
+                    Your shopping cart is empty!
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )
+      )}
     </div>
   );
 };

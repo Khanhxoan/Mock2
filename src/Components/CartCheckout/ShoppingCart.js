@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
-import TopBar from "../Component/TopBar";
-import NavTabs from "./NavTabs";
-import ItemInCart from "../Component/ItemInCart";
-import { selectCart, selectNewCart } from "../../Redux/Cart/selectors";
+import TopBar from "../TopBar";
+import NavTabs from "../NavTabs";
+import ItemInCart from "../ItemInCart";
+import { selectCart, selectNewCart } from "../../redux/Cart/selectors";
 import { useDispatch, useSelector } from "react-redux";
-import { getTotals } from "../../Redux/Cart/reducer";
 import { useNavigate } from "react-router-dom";
 function ShoppingCart() {
   const NewCart = useSelector(selectNewCart);
@@ -37,9 +36,6 @@ function ShoppingCart() {
 
   return (
     <div className="absolute top-[155px]">
-      <header>
-        <TopBar />
-      </header>
       <div>
         <NavTabs />
         <div className="h-[865px] w-[1440px] relative ">

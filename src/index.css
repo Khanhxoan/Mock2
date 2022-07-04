@@ -28,7 +28,7 @@
     
 
     .name-field {
-        @apply mb-0 text-[black] text-[18px] leading-[20.7px] font-bold
+        @apply text-[black] text-[18px] leading-[20.7px] font-bold mb-[11px]
     }
 
     /* HoangNX */

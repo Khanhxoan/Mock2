@@ -1,6 +1,6 @@
 import { message } from 'antd';
 import axios from '../axios'
-import { getCategoriesFailed, getCategoriesStart, getCategoriesSuccess, getProductsFailed, getProductsStart, getProductsSuccess, getSingleProductSuccess, getSingleProductFailed } from './reducer';
+import { getCategoriesFailed, getCategoriesStart, getCategoriesSuccess, getProductsFailed, getProductsStart, getProductsSuccess, getSingleProductSuccess, getSingleProductFailed, createNewProductStart, createNewProductSuccess } from './reducer';
 
 // Get all categories
 export const getCategories = async (dispatch) => {
@@ -40,3 +40,18 @@ export const getSingleProduct = async (dispatch, id) => {
         dispatch(getSingleProductFailed())
     }
 }
+
+
+// Create a new product
+export const createNewProduct = async (dispatch, newProduct, accessToken) => {
+    try{
+        const res = await axios.post("/v1/products", newProduct, {
+            headers: { Authorization: `Bearer ${accessToken}` },
+          })
+        message.success("Create a new product successed!")
+    } catch (err) {
+        message.error("Create a new product failed!")
+    }
+}
+
+

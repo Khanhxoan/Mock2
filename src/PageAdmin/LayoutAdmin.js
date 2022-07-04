@@ -7,7 +7,7 @@ const LayoutAdmin = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [toggle, setToggle] = useState(false);
   return (
-    <div className="bg-[#E5E5E5]">
+    <div className="bg-[#E5E5E5] ">
       {toggle ? (
         <div className="flex-col w-full">
           <AppBarAdmin toggle={toggle} setToggle={setToggle} />

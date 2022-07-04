@@ -1,16 +1,18 @@
-import Product from "../../Assets/ProductPhoto.svg";
 import { useSelector, useDispatch } from "react-redux";
-import { selectAllCart, selectNewCart } from "../../Redux/Cart/selectors";
+import { selectAllCart, selectNewCart } from "../redux/Cart/selectors";
 import { useState, useRef } from "react";
 import {
   deleteItemById,
-  deleteCart,
   getCartById,
-} from "../../Redux/Cart/actions";
-import { selectAccessToken } from "../../Redux/Auth/selectors";
+} from "../redux/Cart/actions";
+import { selectAccessToken } from "../redux/auth/selector";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-const CartPopup = () => {
+
+
+
+
+const CartPopup = ({toggleCartModal}) => {
   const [flag, setFlag] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -34,6 +36,7 @@ const CartPopup = () => {
   
   const handleViewCart = () => {
     navigate('/shoppingcart')
+    toggleCartModal();
   }
   const handleCheckout = () => {
     navigate('/Checkout')

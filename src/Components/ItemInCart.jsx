@@ -1,10 +1,8 @@
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Product from "../../Assets/ProductPhoto.svg"
-import { selectAccessToken } from "../../Redux/Auth/selectors";
-import { deleteItemById, getCartById } from "../../Redux/Cart/actions";
-import { decreaseCart, increaseCart } from "../../Redux/Cart/reducer";
-import { selectNewCart, selectAllCart } from "../../Redux/Cart/selectors";
+import { selectAccessToken } from "../redux/auth/selector";
+import { deleteItemById, getCartById } from "../redux/Cart/actions"
+import { decreaseCart, increaseCart } from "../redux/Cart/reducer";
+import { selectNewCart, selectAllCart } from "../redux/Cart/selectors";
 
 const ItemInCart = () => {
     const card = useSelector(selectNewCart);

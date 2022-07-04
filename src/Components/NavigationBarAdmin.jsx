@@ -29,7 +29,7 @@ const NavigationBarAdmin = () => {
           ADMIN
         </p>
       </div>
-      <div className="h-[1083px] w-[224.92px] bg-[#3D464D] ">
+      <div className="h-screen w-[224.92px] bg-[#3D464D] ">
         <div>
             <p className="text-[12px] font-bold text-[#C4C4C4] pt-[22px] pl-[10.13px] pb-[18px]">APPLICATION</p>
         </div>      
@@ -59,6 +59,9 @@ const NavigationBarAdmin = () => {
               <li className="lisubmenu-admin">
                 <Link className="psubmenu-admin" to="/admin/createproduct">Add Product</Link>  
               </li>
+              <li className="lisubmenu-admin">
+                <Link className="psubmenu-admin" to="/admin/updateproduct">Update Product</Link>  
+              </li>
             </ul>
           </li>
           <li>
@@ -76,7 +79,10 @@ const NavigationBarAdmin = () => {
                 <a className="psubmenu-admin">User List</a>
               </li>
               <li className="lisubmenu-admin">
-                <a className="psubmenu-admin">User Detail</a>  
+                <Link className="psubmenu-admin" to="/admin/createuser">Add User</Link>  
+              </li>
+              <li className="lisubmenu-admin">
+                <Link className="psubmenu-admin" to="/admin/updateuser">Update User</Link>  
               </li>
             </ul>
           </li>
@@ -92,10 +98,10 @@ const NavigationBarAdmin = () => {
             </div>
             <ul className={dropOrder ? "static hidden" : "static block"}>
               <li className="lisubmenu-admin">
-                <a className="psubmenu-admin">Order List</a>
+                <Link className="psubmenu-admin" to="/admin/orderlist">Order List</Link>
               </li>
               <li className="lisubmenu-admin">
-                <a className="psubmenu-admin">Order Detail</a>  
+                <Link className="psubmenu-admin" to="/admin/orderdetail">Order Detail</Link>  
               </li>
             </ul>
           </li>

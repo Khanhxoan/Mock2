@@ -26,7 +26,7 @@ const LayoutUser = () => {
       </header>
       <Outlet />
       {modalLogin && (
-        <div className="flex w-[1440px] h-screen bottom-0 fixed bg-[#1111114D] ">
+        <div className="flex w-screen h-screen bottom-0 fixed bg-[#1111114D] ">
           <div className="mx-auto mt-[258px] overflow">
             <Login
               modalLogin={modalLogin}

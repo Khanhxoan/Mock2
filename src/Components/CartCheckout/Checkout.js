@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { selectAccessToken, selectUserID } from "../../Redux/Auth/selectors";
-import { selectNewCart } from "../../Redux/Cart/selectors";
-import { createNewOrder } from "../../Redux/Orders/actions";
-import { selectAllOrder } from "../../Redux/Orders/selectors";
-import TopBar from "../Component/TopBar";
-import NavTabs from "./NavTabs";
+import { selectAccessToken, selectUserID } from "../../redux/auth/selector";
+import { selectNewCart } from "../../redux/Cart/selectors";
+import { createNewOrder } from "../../redux/Orders/actions";
+import { selectAllOrder } from "../../redux/Orders/selectors";
+import TopBar from "../TopBar";
+import NavTabs from "../NavTabs";
 
 function Checkout() {
   const card = useSelector(selectNewCart);
@@ -66,9 +66,6 @@ function Checkout() {
   };
   return (
     <div className="absolute top-[155px]">
-      <header>
-        <TopBar />
-      </header>
       <div>
         <NavTabs />
         <div className="h-[865px] w-[1440px] relative ">
