@@ -35,7 +35,7 @@ function ShoppingCart() {
   }
 
   return (
-    <div className="absolute top-[155px]">
+    <div className="absolute top-[164px]">
       <div>
         <NavTabs />
         <div className="h-[865px] w-[1440px] relative ">

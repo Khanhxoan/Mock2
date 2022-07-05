@@ -36,16 +36,16 @@ const Home = () => {
       <div className="flex">
         <Categories />
         <div className="w-[862px] ml-[11px] grid grid-cols-3">
-          <div className="col-span-3 col-start-1  ">
+          <div className="col-span-3 col-start-1 w-[862px] ">
+            <img src={img1} className="h-[100%]" />
+          </div>
+          <div className="col-span-1 col-start-1 w-[284px] mt-[5px]">
             <img src={img1} className="h-[100%] " />
           </div>
-          <div className="col-span-1 col-start-1 mt-[5px]">
+          <div className="col-span-1 col-start-2 w-[284px] mt-[5px] ml-[5px]">
             <img src={img1} className="h-[100%] " />
           </div>
-          <div className="col-span-1 col-start-2 mt-[5px] ml-[5px]">
-            <img src={img1} className="h-[100%] " />
-          </div>
-          <div className="col-span-1 col-start-3 mt-[5px] ml-[5px]">
+          <div className="col-span-1 col-start-3 w-[284px] mt-[5px] ml-[5px]">
             <img src={img1} className="h-[100%] " />
           </div>
         </div>

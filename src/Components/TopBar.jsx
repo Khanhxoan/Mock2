@@ -220,7 +220,7 @@ const TopBar = ({
         </div>
         <div className="flex items-center ">
           <MdOutlineShoppingCart
-            className="text-[40px] ml-[30px] mb-0"
+            className="text-[40px] ml-[30px] mb-0 cursor-pointer"
             onClick={() => toggleCartModal()}
           />
           {newCart?.data?.items.length >= 1 ? (
@@ -246,11 +246,12 @@ const TopBar = ({
                 src={userAvatar}
                 size={70}
                 style={{ marginLeft: 32.14 }}
+                className="cursor-pointer"
               />
             </Dropdown>
           ) : (
             <Dropdown overlay={menu1} placement="bottom" arrow>
-              <FiUser className="text-[40px] ml-[32.14px]" />
+              <FiUser className="text-[40px] ml-[32.14px] cursor-pointer" />
             </Dropdown>
           )}
         </div>

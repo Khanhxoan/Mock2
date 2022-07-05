@@ -45,7 +45,6 @@ function SuccessPage() {
   return (
     <div className="absolute top-[155px]">
       <div>
-        <NavTabs />
         <div className="h-[865px] w-[1440px] flex justify-center ">
           <div className="mt-[60px] ">
             <div className="w-[600px] h-[700px] shadow-image border border-solid border-[#DFE3E8] relative">

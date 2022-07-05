@@ -5,8 +5,9 @@ import { selectAccessToken, selectUserID } from "../../redux/auth/selector";
 import { selectNewCart } from "../../redux/Cart/selectors";
 import { createNewOrder } from "../../redux/Orders/actions";
 import { selectAllOrder } from "../../redux/Orders/selectors";
-import TopBar from "../TopBar";
 import NavTabs from "../NavTabs";
+import { Modal, Form, Input, Button } from "antd";
+
 
 function Checkout() {
   const card = useSelector(selectNewCart);
@@ -20,9 +21,14 @@ function Checkout() {
   const shipping = cardLength * 10;
   const [paymentMethod, setPaymentMethod] = useState("");
   console.log(paymentMethod);
+
+  const [isEditing, setIsEditing] = useState(false)
+
   const [address, setAddress] = useState(
     "Random Federation 115302, Moscow ul. Varshavskaya, 15-2-178"
   );
+  const [email, setEmail] = useState("stroyka@example.com");
+
   const [contact, setContact] = useState("0326174848");
   const userID = useSelector(selectUserID);
   let { total, quantity } = card.data.items.reduce(
@@ -65,7 +71,7 @@ function Checkout() {
     
   };
   return (
-    <div className="absolute top-[155px]">
+    <div className="absolute top-[164px]">
       <div>
         <NavTabs />
         <div className="h-[865px] w-[1440px] relative ">
@@ -136,10 +142,10 @@ function Checkout() {
                         Email Address
                       </p>
                       <p className="w-[109.42px] h-[16px] font-roboto text-[14px] mt-[-10px] leading-[16.41px]">
-                        stroyka@example.com
+                        {email}
                       </p>
                     </div>
-                    <button className="mt-[0px] text-[#2E8ADA] w-[132px] h-[16px] leading-[16.41px] text-left">
+                    <button onClick={() => {setIsEditing(true)}} className="mt-[0px] text-[#2E8ADA] w-[132px] h-[16px] leading-[16.41px] text-left">
                       Edit Address
                     </button>
                   </div>
@@ -236,6 +242,67 @@ function Checkout() {
                   </div>
                 </div>
               </div>
+              <Modal
+                title="Edit Shipping Information"
+                visible={isEditing}
+                footer={null}
+                closable={false}
+              >
+                <Form >
+                  <Form.Item
+                    label="Address:"
+                    name="address"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input your address!",
+                      },
+                    ]}
+                  >
+                    <Input
+                      placeholder={address}
+                      onChange={(e) => setAddress(e.target.value)}
+                    />
+                  </Form.Item>
+                  <Form.Item
+                    label="contact:"
+                    name="contact"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input your contact!",
+                      },
+                    ]}
+                  >
+                    <Input
+                      placeholder={contact}
+                      onChange={(e) => setContact(e.target.value)}
+                    />
+                  </Form.Item>
+                  <Form.Item
+                    label="Email:"
+                    name="email"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input your email!",
+                      },
+                    ]}
+                  >
+                    <Input
+                      placeholder={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </Form.Item>
+                 
+                  <Form.Item>
+                    <div className="btn_list">
+                      <Button onClick={() => setIsEditing(false)}>Cancel</Button>
+                      <Button onClick={() => setIsEditing(false)} htmlType="submit">Save</Button>
+                    </div>
+                  </Form.Item>
+                </Form>
+              </Modal>
             </div>
           </div>
         </div>
